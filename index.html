@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>CraftCore — Главная</title>
+  <link rel="icon" type="image/png" href="icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Rubik', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #121222, #2e2e5d);
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-size: 56px;
+      font-weight: 700;
+      margin: 0 0 20px;
+      text-align: center;
+      color: #a64cf3;
+      text-shadow: 0 0 18px #a64cf3;
+    }
+    p.description {
+      font-size: 20px;
+      max-width: 700px;
+      text-align: center;
+      margin-bottom: 40px;
+      line-height: 1.5;
+      color: #ccc;
+    }
+    .search-container {
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 700px;
+      display: flex;
+      justify-content: center;
+    }
+    .search-input {
+      padding: 12px 20px;
+      font-size: 18px;
+      border-radius: 12px;
+      border: none;
+      background: rgba(42, 42, 66, 0.85);
+      color: #eee;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 10px rgba(166, 76, 243, 0.4);
+      transition: box-shadow 0.3s ease;
+    }
+    .search-input:focus {
+      outline: none;
+      box-shadow: 0 0 15px #a64cf3;
+    }
+    .search-input::placeholder {
+      color: #999;
+    }
+    .tabs {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .tab {
+      cursor: pointer;
+      padding: 12px 28px;
+      border-radius: 30px;
+      background: rgba(166, 76, 243, 0.3);
+      color: #eee;
+      font-weight: 600;
+      font-size: 18px;
+      user-select: none;
+      box-shadow: 0 0 10px rgba(166, 76, 243, 0.4);
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .tab.active {
+      background: #a64cf3;
+      box-shadow: 0 0 20px #a64cf3;
+      color: white;
+    }
+    .tab:hover {
+      background: rgba(166, 76, 243, 0.5);
+      box-shadow: 0 0 20px #a64cf3;
+      transform: translateY(-3px);
+    }
+    .info-btn {
+      cursor: pointer;
+      padding: 12px 28px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #a64cf3, #7f3fbf);
+      color: #fff;
+      font-weight: 600;
+      font-size: 18px;
+      user-select: none;
+      box-shadow: 0 0 10px rgba(166, 76, 243, 0.4);
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .info-btn:hover {
+      background: linear-gradient(135deg, #9335e0, #6d2caf);
+      box-shadow: 0 0 20px #a64cf3, 0 0 40px rgba(166, 76, 243, 0.6);
+      transform: translateY(-3px);
+    }
+    .btn-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      max-width: 700px;
+      width: 100%;
+      min-height: 80px;
+    }
+    .btn {
+      background: linear-gradient(135deg, #a64cf3, #7f3fbf);
+      border: none;
+      border-radius: 18px;
+      padding: 18px 36px;
+      color: white;
+      font-size: 22px;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 0 12px #a64cf3, 0 0 24px rgba(166, 76, 243, 0.5);
+      cursor: pointer;
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      flex: 1 1 180px;
+      min-width: 180px;
+    }
+    .btn:hover {
+      background: linear-gradient(135deg, #9335e0, #6d2caf);
+      box-shadow: 0 0 20px #a64cf3, 0 0 40px rgba(166, 76, 243, 0.6);
+      transform: translateY(-3px);
+    }
+    footer {
+      margin-top: 60px;
+      color: #666;
+      font-size: 14px;
+    }
+    .background-glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(166, 76, 243, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(90px);
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
+    }
+    .discord-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      z-index: 10;
+      transition: transform 0.3s ease;
+    }
+    .discord-icon:hover {
+      transform: scale(1.1);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: rgba(42, 42, 66, 0.95);
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      color: #eee;
+      box-shadow: 0 0 20px rgba(166, 76, 243, 0.5);
+      position: relative;
+    }
+    .modal-content p {
+      font-size: 18px;
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .close-btn:hover {
+      color: #a64cf3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background-glow"></div>
+
+  <h1>CraftCore</h1>
+  <p class="description">
+    Этот сайт сделан с помощью ИИ и посвящён Minecraft.<br />
+    Здесь вы найдёте текстурпаки, моды и карты для вашей игры.
+  </p>
+
+  <div class="search-container">
+    <input type="text" class="search-input" id="searchInput" placeholder="Поиск по модам, текстурпакам и картам..." />
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="texturepacks">Текстурпаки</div>
+    <div class="tab" data-tab="mods">Моды</div>
+    <div class="tab" data-tab="maps">Карты</div>
+    <div class="info-btn" onclick="showModal()">Info</div>
+  </div>
+
+  <div class="btn-container" id="content"></div>
+
+  <div class="modal" id="infoModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">×</span>
+      <p>Дата создания сайта: 28.05.2025</p>
+      <p>Разработчик сайта: ALoha V2</p>
+      <p>Сайт был создан с помощью: Chat GPT, Grok</p>
+    </div>
+  </div>
+
+  <a href="https://discord.gg/Mxske7mUN2" target="_blank">
+    <img src="discord.png" alt="Discord" class="discord-icon" />
+  </a>
+
+  <footer>
+    © 2025 ᴄʀᴀꜰᴛᴄᴏʀᴇ Project
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const content = document.getElementById('content');
+    const searchInput = document.getElementById('searchInput');
+    const modal = document.getElementById('infoModal');
+
+    const data = {
+      texturepacks: [
+        { name: 'Faithful 32x32', href: 'faithful32x32.html' }
+      ],
+      mods: [
+        { name: 'JourneyMap', href: 'journeymap.html' }
+      ],
+      maps: [
+        { name: 'OneBlock', href: 'oneblock.html' }
+      ]
+    };
+
+    function renderButtons(tabKey, searchQuery = '') {
+      content.innerHTML = '';
+      const filteredData = data[tabKey].filter(item =>
+        item.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      if (filteredData.length === 0) {
+        content.innerHTML = '<p style="color:#999; font-size:18px; text-align:center; width:100%;">Ничего не найдено</p>';
+        return;
+      }
+      filteredData.forEach(item => {
+        const a = document.createElement('a');
+        a.href = item.href;
+        a.className = 'btn';
+        a.textContent = item.name;
+        content.appendChild(a);
+      });
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        searchInput.value = ''; // Очищаем поиск при смене вкладки
+        renderButtons(tab.dataset.tab);
+      });
+    });
+
+    searchInput.addEventListener('input', () => {
+      const activeTab = document.querySelector('.tab.active').dataset.tab;
+      renderButtons(activeTab, searchInput.value);
+    });
+
+    function showModal() {
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    // Закрытие модального окна при клике вне его
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Изначально рендерим для texturepacks
+    renderButtons('texturepacks');
+  </script>
+
+</body>
+</html>
