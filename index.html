@@ -2,14 +2,13 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CraftCore — Главная</title>
-  <link rel="icon" type="image/png" href="icon.png" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23a64cf3' d='M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z'/%3E%3C/svg%3E" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; }
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; font-size: 16px; }
     body {
       font-family: 'Rubik', sans-serif;
       margin: 0;
@@ -19,153 +18,174 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 20px;
+      padding: 2rem 1rem;
       overflow-x: hidden;
     }
     h1 {
-      font-size: 56px;
+      font-size: 3.5rem;
       font-weight: 700;
-      margin: 0 0 20px;
+      margin: 0 0 1rem;
       text-align: center;
       color: #a64cf3;
-      text-shadow: 0 0 18px #a64cf3;
+      text-shadow: 0 0 1rem #a64cf3;
+      animation: fadeIn 0.6s ease-out;
     }
     p.description {
-      font-size: 20px;
-      max-width: 700px;
+      font-size: 1.25rem;
+      max-width: 43.75rem;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 2rem;
       line-height: 1.5;
       color: #ccc;
+      animation: fadeIn 0.6s ease-out 0.1s forwards;
+      opacity: 0;
     }
     .search-container {
-      margin-bottom: 20px;
+      margin-bottom: 1.25rem;
       width: 100%;
-      max-width: 700px;
+      max-width: 43.75rem;
       display: flex;
       justify-content: center;
+      animation: fadeIn 0.6s ease-out 0.2s forwards;
+      opacity: 0;
     }
     .search-input {
-      padding: 12px 20px;
-      font-size: 18px;
-      border-radius: 12px;
+      padding: 0.75rem 1.25rem;
+      font-size: 1.125rem;
+      border-radius: 0.75rem;
       border: none;
       background: rgba(42, 42, 66, 0.85);
       color: #eee;
       width: 100%;
-      max-width: 400px;
-      box-shadow: 0 0 10px rgba(166, 76, 243, 0.4);
+      max-width: 25rem;
+      box-shadow: 0 0 0.625rem rgba(166, 76, 243, 0.4);
       transition: box-shadow 0.3s ease;
     }
     .search-input:focus {
       outline: none;
-      box-shadow: 0 0 15px #a64cf3;
+      box-shadow: 0 0 0.9375rem #a64cf3;
     }
     .search-input::placeholder {
       color: #999;
     }
     .tabs {
       display: flex;
-      gap: 24px;
-      margin-bottom: 40px;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
       justify-content: center;
       flex-wrap: wrap;
       align-items: center;
+      animation: fadeIn 0.6s ease-out 0.3s forwards;
+      opacity: 0;
     }
     .tab {
       cursor: pointer;
-      padding: 12px 28px;
-      border-radius: 30px;
+      padding: 0.75rem 1.75rem;
+      border-radius: 1.875rem;
       background: rgba(166, 76, 243, 0.3);
       color: #eee;
       font-weight: 600;
-      font-size: 18px;
+      font-size: 1.125rem;
       user-select: none;
-      box-shadow: 0 0 10px rgba(166, 76, 243, 0.4);
+      box-shadow: 0 0 0.625rem rgba(166, 76, 243, 0.4);
       transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     }
     .tab.active {
       background: #a64cf3;
-      box-shadow: 0 0 20px #a64cf3;
+      box-shadow: 0 0 1.25rem #a64cf3;
       color: white;
     }
     .tab:hover {
       background: rgba(166, 76, 243, 0.5);
-      box-shadow: 0 0 20px #a64cf3;
-      transform: translateY(-3px);
+      box-shadow: 0 0 1.25rem #a64cf3;
+      transform: translateY(-0.1875rem);
     }
     .info-btn {
       cursor: pointer;
-      padding: 12px 28px;
-      border-radius: 30px;
+      padding: 0.75rem 1.75rem;
+      border-radius: 1.875rem;
       background: linear-gradient(135deg, #a64cf3, #7f3fbf);
       color: #fff;
       font-weight: 600;
-      font-size: 18px;
+      font-size: 1.125rem;
       user-select: none;
-      box-shadow: 0 0 10px rgba(166, 76, 243, 0.4);
+      box-shadow: 0 0 0.625rem rgba(166, 76, 243, 0.4);
       transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     }
     .info-btn:hover {
       background: linear-gradient(135deg, #9335e0, #6d2caf);
-      box-shadow: 0 0 20px #a64cf3, 0 0 40px rgba(166, 76, 243, 0.6);
-      transform: translateY(-3px);
+      box-shadow: 0 0 1.25rem #a64cf3, 0 0 2.5rem rgba(166, 76, 243, 0.6);
+      transform: translateY(-0.1875rem);
     }
     .btn-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 1.25rem;
       justify-content: center;
-      max-width: 700px;
+      max-width: 43.75rem;
       width: 100%;
-      min-height: 80px;
+      min-height: 5rem;
     }
     .btn {
       background: linear-gradient(135deg, #a64cf3, #7f3fbf);
       border: none;
-      border-radius: 18px;
-      padding: 18px 36px;
+      border-radius: 1.125rem;
+      padding: 1.125rem 2.25rem;
       color: white;
-      font-size: 22px;
+      font-size: 1.375rem;
       font-weight: 600;
       text-decoration: none;
       text-align: center;
-      box-shadow: 0 0 12px #a64cf3, 0 0 24px rgba(166, 76, 243, 0.5);
+      box-shadow: 0 0 0.75rem #a64cf3, 0 0 1.5rem rgba(166, 76, 243, 0.5);
       cursor: pointer;
       transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-      flex: 1 1 180px;
-      min-width: 180px;
+      flex: 1 1 11.25rem;
+      min-width: 11.25rem;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeInUp 0.4s ease-out forwards;
     }
+    .btn:nth-child(1) { animation-delay: 0.4s; }
+    .btn:nth-child(2) { animation-delay: 0.45s; }
+    .btn:nth-child(3) { animation-delay: 0.5s; }
+    .btn:nth-child(4) { animation-delay: 0.55s; }
+    .btn:nth-child(5) { animation-delay: 0.6s; }
+    .btn:nth-child(6) { animation-delay: 0.65s; }
     .btn:hover {
       background: linear-gradient(135deg, #9335e0, #6d2caf);
-      box-shadow: 0 0 20px #a64cf3, 0 0 40px rgba(166, 76, 243, 0.6);
-      transform: translateY(-3px);
+      box-shadow: 0 0 1.25rem #a64cf3, 0 0 2.5rem rgba(166, 76, 243, 0.6);
+      transform: translateY(-0.1875rem);
     }
     footer {
-      margin-top: 60px;
+      margin-top: 3.75rem;
       color: #666;
-      font-size: 14px;
+      font-size: 0.875rem;
+      animation: fadeIn 0.6s ease-out 0.6s forwards;
+      opacity: 0;
     }
     .background-glow {
       position: fixed;
-      width: 600px;
-      height: 600px;
+      width: 37.5rem;
+      height: 37.5rem;
       background: radial-gradient(circle, rgba(166, 76, 243, 0.3) 0%, transparent 70%);
       border-radius: 50%;
-      filter: blur(90px);
+      filter: blur(5.625rem);
       top: 20%;
       left: 50%;
       transform: translateX(-50%);
       z-index: -1;
+      animation: fadeIn 0.6s ease-out;
     }
     .discord-icon {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      width: 3.75rem;
+      height: 3.75rem;
       z-index: 10;
       transition: transform 0.3s ease;
+      animation: fadeIn 0.6s ease-out 0.7s forwards;
+      opacity: 0;
     }
     .discord-icon:hover {
       transform: scale(1.1);
@@ -181,145 +201,227 @@
       z-index: 100;
       align-items: center;
       justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease, backdrop-filter 0.3s ease;
+      backdrop-filter: blur(0);
+    }
+    .modal.show {
+      display: flex;
+      opacity: 1;
+      backdrop-filter: blur(5px);
     }
     .modal-content {
       background: rgba(42, 42, 66, 0.95);
-      border-radius: 16px;
-      padding: 30px;
-      max-width: 400px;
+      border-radius: 1rem;
+      padding: 1.875rem;
+      max-width: 25rem;
       width: 90%;
       text-align: center;
       color: #eee;
-      box-shadow: 0 0 20px rgba(166, 76, 243, 0.5);
+      box-shadow: 0 0 1.25rem rgba(166, 76, 243, 0.5);
       position: relative;
+      transform: translateY(15px);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .modal.show .modal-content {
+      transform: translateY(0);
+      opacity: 1;
     }
     .modal-content p {
-      font-size: 18px;
-      margin: 10px 0;
+      font-size: 1.125rem;
+      margin: 0.625rem 0;
       line-height: 1.5;
     }
     .close-btn {
       position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 24px;
+      top: 0.625rem;
+      right: 0.9375rem;
+      font-size: 1.5rem;
       color: #ccc;
       cursor: pointer;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, transform 0.3s ease;
     }
     .close-btn:hover {
       color: #a64cf3;
+      transform: rotate(90deg);
+    }
+    /* Анимации */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Анимация для динамически добавляемых элементов */
+    .fade-in-element {
+      animation: fadeInUp 0.4s ease-out forwards;
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    @media (max-width: 768px) {
+      html { font-size: 14px; }
+      body { padding: 1.5rem 0.75rem; }
+      h1 { font-size: 2.5rem; }
+      p.description { font-size: 1rem; }
+      .search-input { padding: 0.625rem 1rem; font-size: 1rem; max-width: 20rem; }
+      .tabs { gap: 1rem; }
+      .tab, .info-btn { padding: 0.625rem 1.25rem; font-size: 1rem; }
+      .btn { padding: 0.875rem 1.5rem; font-size: 1rem; flex: 1 1 100%; min-width: 0; }
+      .modal-content { padding: 1.25rem; }
+      .modal-content p { font-size: 1rem; }
+      .close-btn { font-size: 1.25rem; }
+      .discord-icon { width: 3rem; height: 3rem; }
+      footer { font-size: 0.75rem; }
+    }
+    @media (max-width: 480px) {
+      html { font-size: 12px; }
+      h1 { font-size: 2rem; }
+      .search-input { max-width: 15rem; }
+      .tabs { flex-direction: column; gap: 0.5rem; }
+      .tab, .info-btn { width: 100%; text-align: center; }
     }
   </style>
 </head>
 <body>
-
   <div class="background-glow"></div>
-
   <h1>CraftCore</h1>
   <p class="description">
     Этот сайт сделан с помощью ИИ и посвящён Minecraft.<br />
     Здесь вы найдёте текстурпаки, моды и карты для вашей игры.
   </p>
-
   <div class="search-container">
     <input type="text" class="search-input" id="searchInput" placeholder="Поиск по модам, текстурпакам и картам..." />
   </div>
-
   <div class="tabs">
     <div class="tab active" data-tab="texturepacks">Текстурпаки</div>
     <div class="tab" data-tab="mods">Моды</div>
     <div class="tab" data-tab="maps">Карты</div>
-    <div class="info-btn" onclick="showModal()">Info</div>
+    <div class="info-btn" id="infoBtn">Info</div>
   </div>
-
   <div class="btn-container" id="content"></div>
-
   <div class="modal" id="infoModal">
     <div class="modal-content">
-      <span class="close-btn" onclick="closeModal()">×</span>
+      <span class="close-btn" id="closeInfoBtn">×</span>
       <p>Дата создания сайта: 28.05.2025</p>
       <p>Разработчик сайта: ALoha V2</p>
       <p>Сайт был создан с помощью: Chat GPT, Grok</p>
     </div>
   </div>
-
   <a href="https://discord.gg/Mxske7mUN2" target="_blank">
-    <img src="discord.png" alt="Discord" class="discord-icon" />
+    <svg class="discord-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" fill="#5865F2">
+      <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+    </svg>
   </a>
-
   <footer>
-    © 2025 ᴄʀᴀꜰᴛᴄᴏʀᴇ Project
+    © 2025 CraftCore Project
   </footer>
-
   <script>
-    const tabs = document.querySelectorAll('.tab');
-    const content = document.getElementById('content');
-    const searchInput = document.getElementById('searchInput');
-    const modal = document.getElementById('infoModal');
+    (function() {
+      const tabs = document.querySelectorAll('.tab');
+      const content = document.getElementById('content');
+      const searchInput = document.getElementById('searchInput');
+      const infoModal = document.getElementById('infoModal');
+      const infoBtn = document.getElementById('infoBtn');
+      const closeInfoBtn = document.getElementById('closeInfoBtn');
+      const data = {
+        texturepacks: [
+          { name: 'Faithful 32x32', href: 'faithful32x32.html' },
+          { name: 'Xray Ultimate', href: 'xrayultimate.html' }
+        ],
+        mods: [
+          { name: 'JourneyMap', href: 'journeymap.html' },
+          { name: 'Create', href: 'create.html' },
+          { name: 'OptiFine', href: 'optifine.html' },
+          { name: 'FallingTree', href: 'fallingtree.html' },
+          { name: 'Alex\'s Mobs', href: 'alexsmobs.html' }
+        ],
+        maps: [
+          { name: 'OneBlock', href: 'oneblock.html' }
+        ]
+      };
 
-    const data = {
-      texturepacks: [
-        { name: 'Faithful 32x32', href: 'faithful32x32.html' }
-      ],
-      mods: [
-        { name: 'JourneyMap', href: 'journeymap.html' }
-      ],
-      maps: [
-        { name: 'OneBlock', href: 'oneblock.html' }
-      ]
-    };
-
-    function renderButtons(tabKey, searchQuery = '') {
-      content.innerHTML = '';
-      const filteredData = data[tabKey].filter(item =>
-        item.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      if (filteredData.length === 0) {
-        content.innerHTML = '<p style="color:#999; font-size:18px; text-align:center; width:100%;">Ничего не найдено</p>';
-        return;
+      function renderButtons(tabKey, searchQuery = '') {
+        content.innerHTML = '';
+        if (!data[tabKey]) {
+          content.innerHTML = '<p style="color:#999; font-size:1rem; text-align:center; width:100%;">Ошибка загрузки данных</p>';
+          return;
+        }
+        const filteredData = data[tabKey].filter(item =>
+          item.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        if (filteredData.length === 0) {
+          content.innerHTML = '<p style="color:#999; font-size:1rem; text-align:center; width:100%;">Ничего не найдено</p>';
+          return;
+        }
+        filteredData.forEach((item, index) => {
+          const a = document.createElement('a');
+          a.href = item.href;
+          a.className = 'btn fade-in-element';
+          a.textContent = item.name;
+          a.setAttribute('target', item.href.startsWith('http') ? '_blank' : '_self');
+          a.style.animationDelay = `${0.4 + index * 0.05}s`;
+          content.appendChild(a);
+        });
       }
-      filteredData.forEach(item => {
-        const a = document.createElement('a');
-        a.href = item.href;
-        a.className = 'btn';
-        a.textContent = item.name;
-        content.appendChild(a);
-      });
-    }
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
+      function setActiveTab(tabKey) {
         tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        searchInput.value = ''; // Очищаем поиск при смене вкладки
-        renderButtons(tab.dataset.tab);
-      });
-    });
-
-    searchInput.addEventListener('input', () => {
-      const activeTab = document.querySelector('.tab.active').dataset.tab;
-      renderButtons(activeTab, searchInput.value);
-    });
-
-    function showModal() {
-      modal.style.display = 'flex';
-    }
-
-    function closeModal() {
-      modal.style.display = 'none';
-    }
-
-    // Закрытие модального окна при клике вне его
-    window.addEventListener('click', (event) => {
-      if (event.target === modal) {
-        closeModal();
+        const activeTab = Array.from(tabs).find(t => t.dataset.tab === tabKey);
+        if (activeTab) {
+          activeTab.classList.add('active');
+          renderButtons(tabKey);
+        } else {
+          tabs[0].classList.add('active');
+          renderButtons('texturepacks');
+        }
+        localStorage.setItem('activeTab', tabKey);
       }
-    });
 
-    // Изначально рендерим для texturepacks
-    renderButtons('texturepacks');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', (event) => {
+          event.preventDefault();
+          const tabKey = tab.dataset.tab;
+          setActiveTab(tabKey);
+        });
+      });
+
+      searchInput.addEventListener('input', () => {
+        const activeTab = document.querySelector('.tab.active')?.dataset.tab || 'texturepacks';
+        renderButtons(activeTab, searchInput.value);
+      });
+
+      function showModal() {
+        infoModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        infoModal.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+
+      infoBtn.addEventListener('click', showModal);
+      closeInfoBtn.addEventListener('click', closeModal);
+
+      window.addEventListener('click', (event) => {
+        if (event.target === infoModal) {
+          closeModal();
+        }
+      });
+
+      // Начальная загрузка
+      const savedTab = localStorage.getItem('activeTab') || 'texturepacks';
+      setActiveTab(savedTab);
+    })();
   </script>
-
 </body>
 </html>
