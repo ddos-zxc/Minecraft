@@ -128,51 +128,6 @@
       font-size: 1.125rem;
       color: #eee;
     }
-    .preview-img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 0.75rem;
-      margin-top: 1.25rem;
-      box-shadow: 0 0 0.9375rem rgba(166, 76, 243, 0.4);
-      cursor: pointer;
-      z-index: 1;
-    }
-    .image-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-    }
-    .image-modal-content {
-      position: relative;
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 1rem;
-      box-shadow: 0 0 1.25rem rgba(166, 76, 243, 0.5);
-    }
-    .image-modal-content img {
-      max-width: 100%;
-      max-height: 80vh;
-      border-radius: 1rem;
-    }
-    .close-btn {
-      position: absolute;
-      top: -2rem;
-      right: -1.5rem;
-      font-size: 2rem;
-      color: #ccc;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-    .close-btn:hover {
-      color: #a64cf3;
-    }
     footer {
       color: #666;
       font-size: 0.875rem;
@@ -190,8 +145,6 @@
       .btn-group { gap: 0.5rem; flex-direction: column; }
       .like-icon { width: 1.5rem; height: 1.5rem; }
       .like-count { font-size: 1rem; }
-      .preview-img { margin-top: 1rem; }
-      .close-btn { font-size: 1.5rem; top: -1.5rem; right: -1rem; }
       footer { font-size: 0.75rem; }
     }
     @media (max-width: 480px) {
@@ -199,7 +152,6 @@
       h1 { font-size: 2rem; }
       .card { max-width: 100%; }
       .like-icon { width: 1.25rem; height: 1.25rem; }
-      .close-btn { font-size: 1.25rem; top: -1.25rem; right: -0.75rem; }
     }
   </style>
 </head>
@@ -214,7 +166,7 @@
     </div>
     <div class="btn-group">
       <a href="download/alexsmobs-1.16.5.zip" download class="btn">Download Alex's Mobs 1.16.5</a>
-      <a href="download/alexsmobs-1.20.1.zip" download class="btn">Download Alex's Mobs 1.20.1</a>
+      <a href="https://download1351.mediafire.com/ejm4fd33q30gcjg_pfaG1JNWXBG2aKZdx4Nwv8Vhh0gY2Qrlc7_s4Kjn0mD47rMK42FQb21cJO81KDfMdd9cV23ZzGdHT61DOcxLeLbc81Ry1CO1i1cktRstdj4jAoGZofEmsDsYQSAkP2DWR4l0nVfV8I6tdWSt6irZitcwgD9eAp4/10mqvjtfyqakayb/alexsmobs-1.20.1.zip" target="_blank" class="btn">Download Alex's Mobs 1.20.1</a>
     </div>
     <div class="like-container">
       <img src="icon/like.png" alt="Like" class="like-icon" id="likeIcon" />
