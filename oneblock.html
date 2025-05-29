@@ -2,13 +2,12 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CraftCore — OneBlock Карта</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; }
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; font-size: 16px; }
     body {
       font-family: 'Rubik', sans-serif;
       margin: 0;
@@ -19,120 +18,186 @@
       align-items: center;
       justify-content: space-between;
       overflow-x: hidden;
-      padding: 40px 20px;
+      padding: 2rem 1rem;
       color: #eee;
     }
     .background-glow {
       position: absolute;
-      width: 600px;
-      height: 600px;
+      width: 37.5rem;
+      height: 37.5rem;
       background: radial-gradient(circle, rgba(166,76,243,0.3) 0%, transparent 70%);
       border-radius: 50%;
-      filter: blur(90px);
+      filter: blur(5.625rem);
       top: 20%;
       left: 50%;
       transform: translateX(-50%);
       z-index: 0;
     }
     h1 {
-      font-size: 56px;
+      font-size: 3.5rem;
       font-weight: 700;
       color: #fff;
       text-align: center;
-      margin: 80px 20px 8px;
+      margin: 5rem 1.25rem 0.5rem;
       z-index: 1;
-      text-shadow: 0 0 12px #a64cf3;
+      text-shadow: 0 0 0.75rem #a64cf3;
     }
     h2 {
       font-weight: 500;
-      font-size: 28px;
+      font-size: 1.75rem;
       color: #ccc;
-      margin: 0 0 40px;
+      margin: 0 0 2.5rem;
       text-align: center;
       z-index: 1;
-      text-shadow: 0 0 8px #7a46b6;
+      text-shadow: 0 0 0.5rem #7a46b6;
     }
     .subtitle {
-      font-size: 18px;
+      font-size: 1.125rem;
       color: #ccc;
-      margin-bottom: 50px;
+      margin-bottom: 3.125rem;
       text-align: center;
       z-index: 1;
     }
     .card {
       background: rgba(42,42,66,0.85);
-      border-radius: 24px;
-      padding: 40px 30px;
+      border-radius: 1.5rem;
+      padding: 2rem 1.5rem;
       text-align: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      box-shadow: 0 0.5rem 1.5625rem rgba(0,0,0,0.5);
       z-index: 1;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(0.625rem);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 160px;
-      gap: 20px;
-      max-width: 420px;
+      min-height: 10rem;
+      gap: 1.25rem;
+      max-width: 26.25rem;
+      width: 100%;
       margin: 0 auto;
     }
     .btn {
       display: inline-block;
-      padding: 16px 0;
-      font-size: 20px;
+      padding: 1rem 0;
+      font-size: 1.25rem;
       border: none;
-      border-radius: 18px;
+      border-radius: 1.125rem;
       background: linear-gradient(135deg, #a64cf3, #7f3fbf);
       color: #fff;
       text-decoration: none;
       cursor: pointer;
-      box-shadow: 0 0 12px #a64cf3, 0 0 24px rgba(166,76,243,0.5);
-      transition: all 0.3s ease;
-      flex: 1; /* Растягивает кнопки по ширине */
+      box-shadow: 0 0 0.75rem #a64cf3, 0 0 1.5rem rgba(166,76,243,0.5);
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      flex: 1;
       text-align: center;
     }
     .btn:hover {
       background: linear-gradient(135deg, #9335e0, #6d2caf);
-      transform: translateY(-3px);
-      box-shadow: 0 0 20px #a64cf3, 0 0 40px rgba(166,76,243,0.6);
+      transform: translateY(-0.1875rem);
+      box-shadow: 0 0 1.25rem #a64cf3, 0 0 2.5rem rgba(166,76,243,0.6);
     }
     .btn-group {
       display: flex;
       justify-content: center;
-      gap: 12px; /* Уменьшенный отступ между кнопками */
-      margin-bottom: 20px;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
       width: 100%;
-      max-width: 100%; /* Не выходит за рамки карточки */
-      padding: 0 10px; /* Небольшие внутренние отступы */
+      max-width: 100%;
+      padding: 0 0.625rem;
+    }
+    .like-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      z-index: 1;
+    }
+    .like-icon {
+      width: 2rem;
+      height: 2rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    .like-icon.liked {
+      filter: brightness(1.5) drop-shadow(0 0 0.5rem #a64cf3);
+      transform: scale(1.2);
+    }
+    .like-count {
+      font-size: 1.125rem;
+      color: #eee;
     }
     footer {
       color: #666;
-      font-size: 14px;
-      margin-bottom: 30px;
+      font-size: 0.875rem;
+      margin-bottom: 1.875rem;
       z-index: 1;
+    }
+    @media (max-width: 768px) {
+      html { font-size: 14px; }
+      body { padding: 1.5rem 0.75rem; }
+      h1 { font-size: 2.5rem; margin: 3rem 1rem 0.5rem; }
+      h2 { font-size: 1.5rem; }
+      .subtitle { font-size: 1rem; }
+      .card { padding: 1.5rem 1rem; gap: 1rem; max-width: 20rem; }
+      .btn { padding: 0.75rem 0; font-size: 1rem; }
+      .btn-group { gap: 0.5rem; flex-direction: column; }
+      .like-icon { width: 1.5rem; height: 1.5rem; }
+      .like-count { font-size: 1rem; }
+      footer { font-size: 0.75rem; }
+    }
+    @media (max-width: 480px) {
+      html { font-size: 12px; }
+      h1 { font-size: 2rem; }
+      .card { max-width: 100%; }
+      .like-icon { width: 1.25rem; height: 1.25rem; }
     }
   </style>
 </head>
 <body>
-
   <div class="background-glow"></div>
-
   <h1>CraftCore</h1>
   <h2>OneBlock</h2>
   <p class="subtitle">Выживание на одном блоке для Minecraft</p>
-
   <div class="card" id="one-block">
     <div class="btn-group">
       <a href="index.html" class="btn">🏠 Главная</a>
     </div>
     <div class="btn-group">
-      <a href="download/OneBlock-1-16-5.zip" download class="btn">Скачать OneBlock 1.16.5</a>
-      <a href="download/OneBlock-1-20-1.zip" download class="btn">Скачать OneBlock 1.20.1</a>
-      <a href="download/OneBlock-1-12-2.zip" download class="btn">Скачать OneBlock 1.12.2</a>
+      <a href="download/OneBlock-1-12.2.zip" download class="btn">Download OneBlock 1.12.2</a>
+      <a href="download/OneBlock-1-16.5.zip" download class="btn">Download OneBlock 1.16.5</a>
+      <a href="download/OneBlock-1-20.1.zip" download class="btn">Download OneBlock 1.20.1</a>
+    </div>
+    <div class="like-container">
+      <img src="icon/like.png" alt="Like" class="like-icon" id="likeIcon" />
+      <span class="like-count" id="likeCount">0</span>
     </div>
   </div>
-
   <footer>© 2025 CraftCore Project</footer>
-
+  <script>
+    (function() {
+      const likeIcon = document.getElementById('likeIcon');
+      const likeCount = document.getElementById('likeCount');
+      const pageId = 'oneblock';
+      let initialLikes = 0; // Начальное значение 0
+      let hasLiked = localStorage.getItem(`${pageId}_liked`) === 'true';
+      function updateLikeUI() {
+        likeCount.textContent = initialLikes;
+        likeIcon.classList.toggle('liked', hasLiked);
+      }
+      updateLikeUI();
+      likeIcon.addEventListener('click', () => {
+        if (!hasLiked) {
+          initialLikes += 1;
+          hasLiked = true;
+        } else {
+          initialLikes -= 1;
+          hasLiked = false;
+        }
+        localStorage.setItem(`${pageId}_likes`, initialLikes);
+        localStorage.setItem(`${pageId}_liked`, hasLiked);
+        updateLikeUI();
+      });
+    })();
+  </script>
 </body>
 </html>

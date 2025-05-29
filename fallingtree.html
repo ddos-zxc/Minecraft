@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CraftCore — JourneyMap Mod</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet" />
+  <title>CraftCore — FallingTree мод</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; font-size: 16px; }
@@ -57,6 +57,8 @@
       margin-bottom: 3.125rem;
       text-align: center;
       z-index: 1;
+      max-width: 26.25rem;
+      line-height: 1.5;
     }
     .card {
       background: rgba(42,42,66,0.85);
@@ -156,16 +158,16 @@
 <body>
   <div class="background-glow"></div>
   <h1>CraftCore</h1>
-  <h2>JourneyMap</h2>
-  <p class="subtitle">Мод для Minecraft с картой в реальном времени</p>
-  <div class="card" id="journeymap">
+  <h2>FallingTree</h2>
+  <p class="subtitle">Мод FallingTree позволяет срубать деревья одним ударом, ломая весь ствол.</p>
+  <div class="card" id="fallingtree">
     <div class="btn-group">
       <a href="index.html" class="btn">🏠 Главная</a>
     </div>
     <div class="btn-group">
-      <a href="download/JourneyMap-1.12.2.jar" download class="btn">Download JourneyMap 1.12.2</a>
-      <a href="download/JourneyMap-1.16.5.jar" download class="btn">Download JourneyMap 1.16.5</a>
-      <a href="download/JourneyMap-1.20.1.jar" download class="btn">Download JourneyMap 1.20.1</a>
+      <a href="download/FallingTree_1.12.2.jar" download class="btn">Download FallingTree 1.12.2</a>
+      <a href="download/FallingTree_1.16.5.jar" download class="btn">Download FallingTree 1.16.5</a>
+      <a href="download/FallingTree_1.20.1.jar" download class="btn">Download FallingTree 1.20.1</a>
     </div>
     <div class="like-container">
       <img src="icon/like.png" alt="Like" class="like-icon" id="likeIcon" />
@@ -177,7 +179,7 @@
     (function() {
       const likeIcon = document.getElementById('likeIcon');
       const likeCount = document.getElementById('likeCount');
-      const pageId = 'journeymap';
+      const pageId = 'fallingtree';
       let initialLikes = parseInt(localStorage.getItem(`${pageId}_likes`)) || 0;
       let hasLiked = localStorage.getItem(`${pageId}_liked`) === 'true';
       function updateLikeUI() {
